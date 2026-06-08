@@ -9,11 +9,11 @@ Map<String, dynamic> studentDetails= {
 
   "name": { },
   "Scores" : [],
-  "Subjects " : [availableSubjects],
+  "Subjects" : [availableSubjects],
   "Bonus" : null,
-  "Comments " : null,
+  "Comments" : null,
 };
-List<Map> students=[];
+List<Map<String, dynamic>> students=[];
 
 do {
 
@@ -35,7 +35,7 @@ do {
   );
   switch(opt){
     case "1" :
-      List.add();
+      List.add(students);
 
 
 
