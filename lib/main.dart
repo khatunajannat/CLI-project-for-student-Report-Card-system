@@ -35,7 +35,7 @@ do {
   );
   switch(opt){
     case "1" :
-      List.add(students);
+      students.add(studentDetails);
 
 
 
