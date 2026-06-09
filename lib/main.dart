@@ -50,16 +50,13 @@ void main() {
         students.add(studentDetails);
         print(studentDetails);
 
-
-
       case 2:
-        for(int x=0; x<students.length; x++){
-         print(students[x]["name"]);
-
+        for (int x = 0; x < students.length; x++) {
+          print(students[x]["name"]);
         }
         print("Pick a student: ");
-        String? p = stdin.readLineSync() ;
-        for( Map y in students) {
+        String? p = stdin.readLineSync();
+        for (Map y in students) {
           if (y["name"] == p) {
             print(y["Subjects"]);
 
@@ -72,16 +69,58 @@ void main() {
                 y["Scores"].add(num);
                 break;
               }
-
             }
             print("Scores are :  ");
             print(y["Scores"]);
           }
-
         }
 
-
       case 3:
+        for (int cnt = 0; cnt < students.length; cnt++) {
+          print(students[cnt]["name"]);
+        }
+        print("Pick a student : ");
+        String stud = stdin.readLineSync()!;
+        print(" Added bonus for $stud :");
+        int bonusAdd = int.parse(stdin.readLineSync()!);
+        for(Map bM in students){
+
+          if(bM["name"]== stud){
+            if(bM["Bonus"]!=null){
+              print("You cannot add bonus again");
+            }
+
+             bM["Bonus"]??= bonusAdd;
+
+          }
+        }
+
+      case 4:
+        for (int cnt = 0; cnt < students.length; cnt++) {
+          print(students[cnt]["name"]);
+        }
+        print("Pick a student : ");
+        String stud = stdin.readLineSync()!;
+        for( Map cM in students) {
+          if (cM["name"]==stud) {
+            print("Add comment for $stud :");
+
+            String? commentGiven = stdin.readLineSync();
+            cM["Comments"] = commentGiven;
+            if (commentGiven != null) {
+              print(commentGiven);
+            }
+
+            cM["Comments"] = commentGiven?.toUpperCase() ??
+                "No comment provided ";
+          }
+        }
+      // print(students);
+
+      case 5:
+
+
+
 
 
 
