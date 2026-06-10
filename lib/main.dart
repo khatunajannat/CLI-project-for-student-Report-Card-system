@@ -1,4 +1,5 @@
 import "dart:io";
+import "dart:math";
 
 void main() {
   //int opt=1;
@@ -94,6 +95,8 @@ void main() {
 
           }
         }
+        print("Bonus of $stud is $bonusAdd");
+
 
       case 4:
         for (int cnt = 0; cnt < students.length; cnt++) {
@@ -116,13 +119,138 @@ void main() {
           }
         }
       // print(students);
+       case 5:
+               for(Map h in students) {
+                 List<dynamic> display = [
+                   ("print name : "),
+                   (h["name"]),
+                   ("Print scores : "),
+                   (h["Scores"]),
+                   ("The number of scores : "),
+                   (h["Scores"].length),
+                   if (h["Bonus"] != null) " * Has bonus ${h["Bonus"]}"
+                 ];
+                 for (dynamic dW in display) {
+                   print(dW);
+                 }
+               }
+      case 6:
+        for (int cnt = 0; cnt < students.length; cnt++) {
+          print(students[cnt]["name"]);
+        }
+        print("Pick a student : ");
+        String stud = stdin.readLineSync()!;
 
-      //case 5:
+        for(Map bM in students){
+          if(bM["name"]==stud) {
+            num storedScore = 0 ;
+            for (int f = 0; f < bM["Scores"].length; f++) {
+              storedScore +=  bM["Scores"][f];
+            }
+            double avg = storedScore / bM["Scores"].length;
+            print("Average is : $avg");
+
+            num bonusPoints = bM["Bonus"] ?? 0;
+            num total = avg + bonusPoints;
+            if (total > 100) {
+              total = 100;
+            }
+            print(total);
+
+            String grade;
+            if (total >= 90) {
+              grade = "A";
+            }
+            else if (total >= 80 && total <= 89) {
+              grade = "B";
+            }
+            else if (total >= 70 && total <= 79) {
+              grade = "C";
+            }
+            else if (total >= 60 && total <= 69) {
+              grade = "D";
+            }
+            else {
+              grade = "F";
+            }
+
+            String feedback = switch (grade){
+
+              "A" => "Outstanding performance! ",
+              "B" => "Good Work",
+              "C" => "Satisfactory. Room to improve" ,
+              "D" => "Needs improvement ",
+              "F" => "Failing. Please Seek Help",
+
+             _ =>"Unknown grade! ",
+            };
 
 
 
 
 
+
+            print(
+             '''
+              =============================
+                     Report Card      
+              ==============================
+             
+             Name     : ${bM["name"]},
+             
+             Scores   : ${bM["Scores"]},
+ 
+             Bonus    : +${bM["Bonus"]},
+
+             Mark     : $total,
+             
+             Grade    : $grade ,
+             
+             Comment  : ${bM["Comments"] ?? "No comment provided "}},
+
+
+           '''
+            );
+
+          }
+        }
+
+
+
+      case 7:
+
+        List<double> classAvg =[];
+
+        for(Map bM in students) {
+          print("Total Students: ");
+          print(students.length);
+
+          num storedScore = 0;
+          for (int f = 0; f < bM["Scores"].length; f++) {
+            storedScore += bM["Scores"][f];
+          }
+          double avg = storedScore / bM["Scores"].length;
+          print("Average is : $avg");
+
+          num bonusPoints = bM["Bonus"] ?? 0;
+          double total = avg + bonusPoints;
+          if (total > 100) {
+            total = 100;
+          }
+          print(total);
+          classAvg.add(total);
+        }
+
+        double totalClassAvg = 0;
+        for(double ans in classAvg){
+           totalClassAvg += ans ;
+        }
+        double storeAvg = totalClassAvg/ classAvg.length;
+        print("Class average is : $storeAvg");
+        double minAvg = classAvg.reduce(min);
+        print("Minimum avg: $minAvg" );
+        double maxAvg = classAvg.reduce(max);
+        print("Maximum avg : $maxAvg ");
 
 
       case 8:
